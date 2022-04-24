@@ -1,0 +1,53 @@
+<div class="block-content block-content-full" style="background-color: rgb(244, 213, 206);">
+    <div  class=pull-right>
+        <button type="submit" class="comment_button trans_200 bt " (click)="openAddModal()">Add Coach</button> <br> <br>
+    </div>
+    <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+        <thead>
+            <tr>
+                <th class="text-center"></th>
+                <th>Name</th>
+                <th class="d-none d-sm-table-cell">Surname</th>
+                <th class="d-none d-sm-table-cell" style="width: 15%;">Phone</th>
+                <th class="text-center" style="width: 15%;">Address</th>
+                <th class="text-center" style="width: 15%;">Inscription date</th>
+                <th class="text-center" style="width: 15%;">Role</th>
+                <th class="text-center" style="width: 15%;">Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users; let i =index">
+                <td class="text-center">{{i+1}}</td>
+                <td class="fw-semibold">{{user.nom}}</td>
+                <td class="d-none d-sm-table-cell">{{user.prenom}}</td>
+                <td class="text-center">{{user.tel}}</td>
+
+                <td class="d-none d-sm-table-cell">
+                    <span class="badge bg-info">{{user.adresse}}</span>
+                </td>
+                <td class="d-none d-sm-table-cell">
+                    {{user.dateInscri}}
+
+                </td>
+                <td class="d-none d-sm-table-cell">
+                    {{user.role}}
+
+                </td>
+                <td class="fw-semibold">
+                    <div style="display:flex">
+                        <button class="btn btn-sm btn-alt-danger" (click)="openDeleteModal(i)">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>Delete
+                        </button>
+                        <button class=" btn btn-sm btn-alt-secondary" (click)="openEditModal()">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Update
+                        </button>
+
+                    </div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+

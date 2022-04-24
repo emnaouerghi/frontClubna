@@ -1,0 +1,72 @@
+<header id="page-header">
+    <div class="content-header">
+      <div class="space-x-1">
+        <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="layout" data-action="sidebar_toggle">
+          <i class="fa fa-fw fa-bars"></i>
+        </button>
+        <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="layout" data-action="header_search_on">
+          <i class="fa fa-fw fa-search"></i>
+        </button>
+      </div>
+      <div class="space-x-1">
+        <div class="dropdown d-inline-block">
+          <button type="button" class="btn btn-sm btn-alt-secondary" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fw-semibold">Admin</span>
+            <i class="fa fa-angle-down opacity-50 ms-1"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-md dropdown-menu-end p-0" aria-labelledby="page-header-user-dropdown">
+            <div class="p-2">
+              <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="be_pages_generic_profile.html">
+                <span>Profile</span>
+                <i class="fa fa-fw fa-user opacity-25"></i>
+              </a>
+              <a class="dropdown-item d-flex align-items-center justify-content-between" href="be_pages_generic_inbox.html">
+                <span>Inbox</span>  
+                <i class="fa fa-fw fa-envelope-open opacity-25"></i>
+              </a>
+              <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="be_pages_generic_invoice.html">
+                <span>Invoices</span>
+                <i class="fa fa-fw fa-file opacity-25"></i>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">
+                <span>Settings</span>
+                <i class="fa fa-fw fa-wrench opacity-25"></i>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="op_auth_signin.html">
+                <span>Sign Out</span>
+                <i class="fa fa-fw fa-sign-out-alt opacity-25"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="layout" data-action="side_overlay_toggle">
+          <i class="fa fa-fw fa-tasks"></i>
+          <i class="fa fa-exclamation-triangle ms-1 text-danger"></i>
+        </button>
+      </div>
+    </div>
+    <div id="page-header-search" class="overlay-header bg-body-extra-light">
+      <div class="content-header">
+        <form class="w-100" action="db_clean.html" method="POST">
+          <div class="input-group">
+            <button type="button" class="btn btn-secondary" data-toggle="layout" data-action="header_search_off">
+              <i class="fa fa-fw fa-times"></i>
+            </button>
+            <input type="text" class="form-control" placeholder="Search or hit ESC.." id="page-header-search-input" name="page-header-search-input">
+            <button type="submit" class="btn btn-secondary">
+              <i class="fa fa-fw fa-search"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="page-header-loader" class="overlay-header bg-primary">
+      <div class="content-header">
+        <div class="w-100 text-center">
+          <i class="far fa-sun fa-spin text-white"></i>
+        </div>
+      </div>
+    </div>
+  </header>

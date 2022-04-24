@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+.bt {display: inline-block;
+    font-size: 15px;
+    background-color: #ed563b;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    }

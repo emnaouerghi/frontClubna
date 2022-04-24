@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "ee30989d-c6df-4d1c-bcd1-c5c2403c7cf9"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -94,7 +97,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/ngx-toastr/toastr.css"
+
             ],
             "scripts": []
           }

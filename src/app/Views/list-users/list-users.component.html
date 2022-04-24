@@ -1,0 +1,264 @@
+<div class="block-content block-content-full" style="background-color: rgb(244, 213, 206);">
+    <div class=pull-right>
+        <div class="row" style="display:inline-block;">
+            <button type="submit" class="comment_button trans_200 bt " (click)="openAddModal()">Add user</button> <br>
+            <br>
+            <button type="button" class="comment_button trans_200 bt " (click)="refresh()"><i class="fa fa-refresh"
+                    aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+        <thead>
+            <tr>
+                <th class="text-center"></th>
+                <th>Id</th>
+                <th>Name and Surname</th>
+                <th class="d-none d-sm-table-cell" style="width: 15%;">Email</th>
+                <th class="text-center" style="width: 15%;">Address</th>
+                <th class="text-center" style="width: 15%;">Inscription date</th>
+                <th class="text-center" style="width: 15%;">Role</th>
+                <th class="text-center" style="width: 15%;">Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users; let i =index">
+                <td class="text-center">{{i+1}}</td>
+                <td class="text-center">{{user.id}}</td>
+
+                <td class="fw-semibold">{{user.nom}} {{user.prenom}}</td>
+                <td class="text-center">{{user.email}}</td>
+
+                <td class="d-none d-sm-table-cell">
+                    <span class="badge bg-info">{{user.adresse}}</span>
+                </td>
+                <td class="d-none d-sm-table-cell">
+                    {{user.dateInscri}}
+
+                </td>
+                <td class="d-none d-sm-table-cell">
+                    {{user.role}}
+
+                </td>
+                <td class="fw-semibold">
+                    <div style="display:flex">
+                        <button class="btn btn-sm btn-alt-danger" (click)="openDeleteModal(i)">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>Delete
+                        </button>
+                        <button class=" btn btn-sm btn-alt-secondary" (click)="openEditModal(user.id)">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Update
+                        </button>
+
+                    </div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal de add user -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayAdd}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="left: 200;">Add user </h4>
+                <button type="button" class="close" data-dismiss="app" (click)="closeAddModal()">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+
+            </div>
+            <div class="modal-body">
+
+                <form class="js-validation-signup" novalidate="novalidate" #addItemForm="ngForm">
+                    <div style="display: flex;">
+                        <div class="form-floating mb-4">
+                            <input type="text" class="form-control" id="name" name="nom"
+                                placeholder="Enter your username" ngModel required>
+                            <label class="form-label" for="name">Name</label>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input type="text" class="form-control" id="username" name="prenom"
+                                placeholder="Enter your username" ngModel required>
+                            <label class="form-label" for="username">Surname</label>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email"
+                            ngModel required>
+                        <label class="form-label" for="email">Email</label>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input type="text" class="form-control" id="address" name="adresse"
+                            placeholder="Enter your email" ngModel required>
+                        <label class="form-label" for="address">Address</label>
+                    </div>
+                    <div style="display: flex;">
+                        <div class="form-floating mb-4">
+                            <input type="date"
+                                class="js-flatpickr form-control js-flatpickr-enabled flatpickr-input active" id="date"
+                                name="dateInscri" placeholder="Y-m-d"  ngModel>
+                            <label class="form-label" for="date">Inscription date</label>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="col-lg-8 col-xl-5" data-select2-id="10">
+                            <div class="form-floating mb-4" data-select2-id="9">
+                                <select
+                                    class="js-select2 form-select js-select2-enabled select2-hidden-accessible form-floating mb-4"
+                                    id="example-select2" name="role" style="width: 100%;"
+                                    data-placeholder="Choose one.." data-select2-id="example-select2" tabindex="-1"
+                                    aria-hidden="true" ngModel>
+                                    <option data-select2-id="2"></option>
+                                    <option value="coach" data-select2-id="15">Coach</option>
+                                    <option value="abonne" data-select2-id="16">Abonne</option>
+                                    <option value="admin" data-select2-id="16">Admin</option>
+
+
+                                </select>
+                                <label class="form-label form-floating mb-4" for="example-select2">Role</label>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input type="password" class="form-control" id="password" name="password"
+                            placeholder="Enter your password" ngModel required >
+                        <label class="form-label" for="password">Password</label>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                            placeholder="Confirm your password" required >
+                        <label class="form-label" for="confirmPassword">Confirm Password</label>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+
+
+                <button type="button" (click)="add(addItemForm.value)" [disabled]="!addItemForm.form.valid"
+                    class="btn btn-lg btn-alt-primary fw-semibold bt pull-right">
+                    Add
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal edit user -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayEdit}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="left: 200;">Edit user </h4>
+                <button type="button" class="close" data-dismiss="app" (click)="closeEditModal()">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+
+            </div>
+            <div class="modal-body">
+
+                <form class="js-validation-signup" novalidate="novalidate" #editItemForm="ngForm">
+                    <div style="display: flex;">
+                        <div class="form-floating mb-4">
+                            <input type="text" class="form-control" id="name" name="nom"
+                                placeholder="Enter your username" [(ngModel)]="user.nom">
+                            <label class="form-label" for="name">Name</label>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input type="text" class="form-control" id="username" name="prenom"
+                                placeholder="Enter your username" [(ngModel)]="user.prenom">
+                            <label class="form-label" for="username">Surname</label>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email"
+                            [(ngModel)]="user.email">
+                        <label class="form-label" for="email">Email</label>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input type="text" class="form-control" id="address" name="adresse"
+                            placeholder="Enter your email" [(ngModel)]="user.adresse">
+                        <label class="form-label" for="address">Address</label>
+                    </div>
+                    <div style="display: flex;">
+                        <div class="form-floating mb-4">
+                            <input type="date"
+                                class="js-flatpickr form-control js-flatpickr-enabled flatpickr-input active" id="date"
+                                name="dateInscri" placeholder="Y-m-d"  [(ngModel)]="user.dateInscri">
+                            <label class="form-label" for="date">Inscription date</label>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="col-lg-8 col-xl-5" data-select2-id="10">
+                            <div class="form-floating mb-4" data-select2-id="9">
+                                <select
+                                    class="js-select2 form-select js-select2-enabled select2-hidden-accessible form-floating mb-4"
+                                    id="example-select2" name="role" style="width: 100%;"
+                                    data-placeholder="Choose one.." data-select2-id="example-select2" tabindex="-1"
+                                    aria-hidden="true" [(ngModel)]="user.role">
+                                    <option data-select2-id="2"></option>
+                                    <option value="coach" data-select2-id="15">Coach</option>
+                                    <option value="abonne" data-select2-id="16">Abonne</option>
+                                    <option value="admin" data-select2-id="16">Admin</option>
+
+
+                                </select>
+                                <label class="form-label form-floating mb-4" for="example-select2">Role</label>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="form-floating mb-4">
+                        <input type="password" class="form-control" id="password" name="mdp"
+                            placeholder="Enter your password" [(ngModel)]="user.mdp">
+                        <label class="form-label" for="password">Password</label>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input type="password" class="form-control" id="password-confirm" name="password-confirm"
+                            placeholder="Confirm your password">
+                        <label class="form-label" for="password-confirm">Confirm Password</label>
+                    </div>-->
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+
+
+                <button type="submit" (click)="edit(editItemForm.value)"
+                    class="btn btn-lg btn-alt-primary fw-semibold bt pull-right">
+                    Edit
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal confirm delete-->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayDelete}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #FFE4B5;">
+                <h4 class="modal-title" style="left: 200;">Are you sure?</h4>
+                <button type="button" class="close" data-dismiss="app" (click)="closeConfirm()">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+
+            </div>
+            <div class="modal-body" style="background-color: #FFE4B5;">
+                <p>Do you really want to delete this? </p>
+            </div>
+            <div class="modal-footer" style="background-color: #FFE4B5;">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" (click)="delete()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

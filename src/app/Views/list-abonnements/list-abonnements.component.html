@@ -38,7 +38,7 @@
                                 <tr *ngFor="let abon of abonnements; let i =index">
                                     <td class="fw-semibold">{{i+1}}</td>
                                     <td class="fw-semibold">{{abon.id}}</td>
-                                    <td class="d-none d-sm-table-cell">{{abon.user}}</td>
+                                    <td class="d-none d-sm-table-cell">{{abon.user.id}}</td>
                                     <td class="text-center">{{abon.activity.nom}}</td>
 
                                     <td class="d-none d-sm-table-cell">

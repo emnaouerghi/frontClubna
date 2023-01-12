@@ -7,29 +7,29 @@ import { catchError, Observable, Subject, throwError } from 'rxjs';
 })
 export class UserService {
   headers = new HttpHeaders().set('Content-Type','application/json');
-  baseUrl='http://localhost:8090';
+  baseUrl='http://localhost:8082';
  constructor(private http:HttpClient) { }
 //createUser 
 CreateUser(data: any){
   console.log(data);
-  return this.http.post('http://localhost:8090/users/add-user', data);
+  return this.http.post('http://localhost:8082/users/add-user', data);
 }
 //getAllUsers
   getUsers(){
-    return this.http.get('http://localhost:8090/users');
+    return this.http.get('http://localhost:8082/users');
   }
   //getUser
   getUser(id: any) {
-    return this.http.get<any>('http://localhost:8090/users/find-user/' + id)
+    return this.http.get<any>('http://localhost:8082/users/find-user/' + id)
   }
 //Update user
 updateUser(id : any,data : any):Observable<any>{
-let url='http://localhost:8090/users/'+id;
+let url='http://localhost:8082/users/'+id;
 return this.http.put(url ,data, {headers:this.headers}).pipe(catchError(this.errorMgmt))}
 // delete user
 deleteUser(id:number) {
  // let endPoints = id
-  this.http.delete('http://localhost:8090/users/'+ id).subscribe(data => {
+  this.http.delete('http://localhost:8082/users/'+ id).subscribe(data => {
     console.log(id); });
 }
 //error handling

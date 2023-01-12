@@ -43,7 +43,7 @@ export class ListAbonnementsComponent implements OnInit {
   }
   readUsers() {
     this.userService.getUsers().subscribe((data) => { this.users = data; });
-    // console.log(this.users);
+     console.log(this.users);
   }
   readActivities() {
     this.activityService.getActivities().subscribe((data) => { this.activities = data; });

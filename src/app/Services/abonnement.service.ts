@@ -7,40 +7,40 @@ import { catchError, Observable, Subject, throwError } from 'rxjs';
 })
 export class AbonnementService {
   headers = new HttpHeaders().set('Content-Type','application/json');
-  baseUrl='http://localhost:8090';
+  baseUrl='http://localhost:8084';
  constructor(private http:HttpClient) { }
 //create abonnement
 CreateAbonnement(data: any,idUser:number,idActivity:number):Observable<any>{
-  return this.http.post('http://localhost:8090/add-abonnement/'+idUser+'/'+idActivity, data);
+  return this.http.post('http://localhost:8084/add-abonnement/'+idUser+'/'+idActivity, data);
 }
 //getAllabonnements
   getAbonnements(){
-    return this.http.get('http://localhost:8090/abonnements');
+    return this.http.get('http://localhost:8084/abonnements');
   }
   //getabonnement
   getAbonnement(id: any) {
-    return this.http.get<any>('http://localhost:8090/sessions/session/' + id)
+    return this.http.get<any>('http://localhost:8084/sessions/session/' + id)
   }
 //Update abonnement
 updateAbonnement(id : any,data : any):Observable<any>{
-let url='http://localhost:8090/abonnement/update/'+id;
+let url='http://localhost:8084/abonnement/update/'+id;
 return this.http.put(url ,data, {headers:this.headers}).pipe(catchError(this.errorMgmt))}
 // delete abonnement
 deleteAbonnement(id:number) {
  // let endPoints = id
-  this.http.delete('http://localhost:8090/abonnements/'+ id).subscribe(data => {
+  this.http.delete('http://localhost:8084/abonnements/'+ id).subscribe(data => {
     console.log(id); });
 }
 
 // send mail 
 sendMail(id:number) {
-  return this.http.get('http://localhost:8090/abonnements/sendMail/'+id).subscribe(data => {
+  return this.http.get('http://localhost:8084/abonnements/sendMail/'+id).subscribe(data => {
     console.log(id); });
 }
 
 // generare pdf
 printPDF(id:number):Observable<any>{
-  return this.http.get('http://localhost:8090/pdf/generate/'+id,{responseType: 'blob'});
+  return this.http.get('http://localhost:8084/pdf/generate/'+id,{responseType: 'blob'});
 }
 //error handling
 errorMgmt(error: HttpErrorResponse): Observable<never>{
